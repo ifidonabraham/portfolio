@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Download } from "lucide-react"
+import { PROFILE_IMAGE } from "@/lib/site"
 
 export function Hero() {
   return (
@@ -18,7 +19,7 @@ export function Hero() {
         >
           <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-xl dark:border-zinc-800">
             <Image
-              src="/myimage.png"
+              src={PROFILE_IMAGE}
               alt="Ifidon Abraham Ayomide"
               fill
               className="object-cover"

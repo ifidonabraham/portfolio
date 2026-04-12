@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { PROFILE_IMAGE, SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Ifidon Abraham Ayomide | Software Developer",
   description: "AI scientist and engineer: agents, stack, and shipped products.",
   keywords: ["Software Developer", "AI Engineer", "Agentic AI", "Full-Stack Developer", "Lagos, Nigeria", "UNILAG"],
@@ -23,16 +25,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://ifidonabraham.com", // Placeholder
+    url: SITE_URL,
     title: "Ifidon Abraham Ayomide | Software Developer",
     description: "AI scientist and engineer: agents, stack, and shipped products.",
     siteName: "Ifidon Abraham Ayomide Portfolio",
+    images: [
+      {
+        url: PROFILE_IMAGE,
+        width: 512,
+        height: 512,
+        alt: "Ifidon Abraham Ayomide",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ifidon Abraham Ayomide | Software Developer",
     description: "AI scientist and engineer: agents, stack, and shipped products.",
     creator: "@don_atyaserve",
+    images: [PROFILE_IMAGE],
   },
 };
 
