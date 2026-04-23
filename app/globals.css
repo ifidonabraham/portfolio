@@ -25,8 +25,8 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
 }
 
 :root {
@@ -79,10 +79,67 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-zinc-200 dark:selection:bg-zinc-700;
+    transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+    background-image:
+      radial-gradient(circle at 20% 15%, oklch(0.98 0.02 240 / 0.7), transparent 35%),
+      radial-gradient(circle at 80% 80%, oklch(0.96 0.03 290 / 0.6), transparent 35%);
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(circle at 20% 15%, oklch(0.22 0.03 240 / 0.5), transparent 40%),
+      radial-gradient(circle at 80% 80%, oklch(0.2 0.04 290 / 0.4), transparent 40%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply transition-all duration-300;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply ring-2 ring-zinc-400 ring-offset-2 ring-offset-background outline-none;
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.glass {
+  @apply border border-zinc-200/60 bg-white/70 backdrop-blur-xl dark:border-zinc-700/60 dark:bg-zinc-900/60;
+}
+
+.section-padding {
+  @apply py-20 sm:py-24;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }

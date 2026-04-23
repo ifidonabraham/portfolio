@@ -3,11 +3,14 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Download } from "lucide-react"
 import { PROFILE_IMAGE } from "@/lib/site"
 
 export function Hero() {
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 400], [0, 80])
+
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-20">
       <div className="container relative z-10 mx-auto px-4 text-center">
@@ -32,7 +35,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-4 text-4xl font-extrabold tracking-tight sm:text-6xl"
+          className="mb-4 text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
         >
           Ifidon Abraham Ayomide
         </motion.h1>
@@ -43,16 +46,18 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-4 text-xl font-medium text-zinc-600 dark:text-zinc-400 sm:text-2xl"
         >
-          Software Developer
+          Software Developer & AI Enthusiast
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mx-auto mb-8 max-w-2xl text-lg text-zinc-500 dark:text-zinc-500"
+          className="mx-auto mb-8 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300"
         >
-          AI scientist and engineer: agents, stack, and shipped products.
+          <span className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-zinc-500 pr-2 align-bottom [animation:typing_3s_steps(55,end),blink_1s_step-end_infinite]">
+            AI scientist and engineer: agents, stack, and shipped products.
+          </span>
         </motion.p>
 
         <motion.div
@@ -63,7 +68,7 @@ export function Hero() {
         >
           <Link
             href="#projects"
-            className="group flex h-12 items-center justify-center gap-2 rounded-full bg-black px-8 text-sm font-semibold text-white transition-all hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            className="group flex h-12 items-center justify-center gap-2 rounded-full bg-black px-8 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
           >
             View Projects
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -71,7 +76,7 @@ export function Hero() {
           <a
             href="/resume.pdf"
             download
-            className="flex h-12 items-center justify-center gap-2 rounded-full border border-zinc-200 bg-white px-8 text-sm font-semibold transition-all hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900"
+            className="glass flex h-12 items-center justify-center gap-2 rounded-full px-8 text-sm font-semibold transition-all hover:-translate-y-0.5"
           >
             Download Resume
             <Download className="h-4 w-4" />
@@ -80,8 +85,14 @@ export function Hero() {
       </div>
 
       {/* Background gradients */}
-      <div className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-100 opacity-50 blur-[100px] dark:bg-zinc-900/20" />
-      <div className="absolute top-1/4 left-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-zinc-50 opacity-30 blur-[80px] dark:bg-zinc-800/10" />
+      <motion.div
+        style={{ y }}
+        className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-200/60 blur-[100px] dark:bg-zinc-700/30"
+      />
+      <motion.div
+        style={{ y: useTransform(scrollY, [0, 400], [0, -60]) }}
+        className="absolute top-1/4 left-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-zinc-100/70 blur-[80px] dark:bg-zinc-800/20"
+      />
     </section>
   )
 }

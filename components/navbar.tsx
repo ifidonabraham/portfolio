@@ -5,17 +5,20 @@ import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { Menu, X } from "lucide-react"
 
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Articles", href: "#articles" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +35,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/70 backdrop-blur-md border-b border-zinc-200 py-3 dark:bg-zinc-950/70 dark:border-zinc-800"
+          ? "glass border-b py-3"
           : "bg-transparent py-5"
       )}
     >
@@ -46,9 +49,10 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-zinc-600 hover:text-black transition-colors dark:text-zinc-400 dark:hover:text-white"
+              className="group relative text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
             >
               {item.name}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
           <ThemeToggle />
@@ -56,9 +60,36 @@ export function Navbar() {
 
         <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
-          {/* Mobile menu could be added here with shadcn Sheet */}
+          <button
+            type="button"
+            aria-expanded={isOpen}
+            aria-label="Toggle menu"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="rounded-full border border-zinc-300 p-2 dark:border-zinc-700"
+          >
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </div>
       </div>
+
+      {isOpen ? (
+        <motion.nav
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass container mx-auto mt-3 flex flex-col gap-2 rounded-2xl px-4 py-4 md:hidden"
+        >
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </motion.nav>
+      ) : null}
     </motion.header>
   )
 }
