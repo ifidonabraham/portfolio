@@ -2,22 +2,27 @@
 
 import { motion } from "framer-motion"
 import { ArrowUpRight, BookOpen } from "lucide-react"
+import Image from "next/image"
 
 const articles = [
   {
     title: "Prompt Engineering for Reliable AI Apps",
-    href: "https://ifidonabraham.substack.com",
+    href: "https://ifidonabraham.substack.com/p/prompt-engineering-for-reliable-ai",
     excerpt: "Practical prompt patterns for production-grade LLM features.",
+    image: "/articles/prompt-engineering/cover.png",
+    date: "Apr 26, 2026",
   },
   {
     title: "Building Agentic Workflows with Modern Tooling",
     href: "https://ifidonabraham.substack.com",
     excerpt: "How to design autonomous flows while preserving control and observability.",
+    date: "On Substack",
   },
   {
     title: "From Idea to Product: AI-First Full-Stack Delivery",
     href: "https://ifidonabraham.substack.com",
     excerpt: "A blueprint for shipping fast without losing quality.",
+    date: "On Substack",
   },
 ]
 
@@ -53,13 +58,37 @@ export function Articles() {
               whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
-              className="glass group rounded-2xl p-6"
+              className="glass group overflow-hidden rounded-2xl"
             >
-              <h3 className="text-lg font-semibold group-hover:text-zinc-900 dark:group-hover:text-zinc-100">{article.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{article.excerpt}</p>
-              <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium">
-                Read article
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              {article.image ? (
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt={`${article.title} cover`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+              ) : (
+                <div className="h-1.5 w-full bg-gradient-to-r from-zinc-300 via-zinc-200 to-zinc-300 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-700" />
+              )}
+
+              <div className="p-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                  {article.date}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
+                  {article.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  {article.excerpt}
+                </p>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+                  Read article
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
               </div>
             </motion.a>
           ))}
