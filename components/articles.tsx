@@ -14,9 +14,10 @@ const articles = [
   },
   {
     title: "Building Agentic Workflows with Modern Tooling",
-    href: "https://ifidonabraham.substack.com",
+    href: "https://open.substack.com/pub/ifidonabraham/p/building-agentic-workflows-with-modern?r=7at7o0&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
     excerpt: "How to design autonomous flows while preserving control and observability.",
-    date: "On Substack",
+    image: "/articles/agentic-workflows/cover.png",
+    date: "Apr 29, 2026",
   },
   {
     title: "From Idea to Product: AI-First Full-Stack Delivery",
