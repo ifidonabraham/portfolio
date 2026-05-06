@@ -20,10 +20,11 @@ const articles = [
     date: "Apr 29, 2026",
   },
   {
-    title: "From Idea to Product: AI-First Full-Stack Delivery",
-    href: "https://ifidonabraham.substack.com",
-    excerpt: "A blueprint for shipping fast without losing quality.",
-    date: "On Substack",
+    title: "Building Dokito: What I’m Learning About AI-Powered Web Applications",
+    href: "https://open.substack.com/pub/ifidonabraham/p/building-dokito-what-im-learning?r=7at7o0&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+    excerpt: "How building a real healthcare platform changed my thinking about AI, reliability, and full-stack product design.",
+    image: "/articles/building-dokito/cover.png",
+    date: "Apr 2026",
   },
 ]
 
