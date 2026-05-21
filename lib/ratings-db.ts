@@ -1,3 +1,4 @@
+import { existsSync } from "fs"
 import { promises as fs } from "fs"
 import path from "path"
 
@@ -13,7 +14,37 @@ export type RatingsDatabase = {
   reviews: PortfolioReview[]
 }
 
-const RATINGS_FILE = path.join(process.cwd(), "data", "ratings.json")
+function findProjectRoot(): string {
+  let dir = process.cwd()
+
+  for (let i = 0; i < 6; i++) {
+    const pkg = path.join(dir, "package.json")
+    const dataDir = path.join(dir, "data")
+    if (existsSync(pkg) && existsSync(dataDir)) {
+      return dir
+    }
+    const parent = path.dirname(dir)
+    if (parent === dir) break
+    dir = parent
+  }
+
+  return process.cwd()
+}
+
+function getRatingsFilePath(): string {
+  // Vercel/serverless: project files are read-only; use writable /tmp
+  if (process.env.VERCEL === "1") {
+    return "/tmp/portfolio-ratings.json"
+  }
+
+  return path.join(findProjectRoot(), "data", "ratings.json")
+}
+
+const RATINGS_FILE = getRatingsFilePath()
+
+export function getRatingsStoragePath(): string {
+  return RATINGS_FILE
+}
 
 export async function readRatings(): Promise<RatingsDatabase> {
   try {
@@ -24,6 +55,20 @@ export async function readRatings(): Promise<RatingsDatabase> {
     }
     return parsed
   } catch {
+    // On Vercel first run, seed from bundled project file if present
+    if (process.env.VERCEL === "1") {
+      try {
+        const bundled = path.join(findProjectRoot(), "data", "ratings.json")
+        const raw = await fs.readFile(bundled, "utf-8")
+        const parsed = JSON.parse(raw) as RatingsDatabase
+        if (Array.isArray(parsed.reviews)) {
+          await writeRatings(parsed)
+          return parsed
+        }
+      } catch {
+        // ignore
+      }
+    }
     return { reviews: [] }
   }
 }
@@ -38,7 +83,7 @@ export async function addReview(
 ): Promise<PortfolioReview> {
   const db = await readRatings()
   const review: PortfolioReview = {
-    id: crypto.randomUUID(),
+    id: globalThis.crypto.randomUUID(),
     name: input.name.trim(),
     rating: input.rating,
     comment: input.comment.trim(),

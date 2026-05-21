@@ -134,7 +134,7 @@ export function PortfolioRatings() {
       const data = (await res.json()) as {
         error?: string
         summary?: Summary
-        reviews?: Review[]
+        review?: Review
       }
 
       if (!res.ok) {
@@ -143,7 +143,11 @@ export function PortfolioRatings() {
       }
 
       if (data.summary) setSummary(data.summary)
-      await loadRatings()
+      if (data.review) {
+        setReviews((prev) => [data.review!, ...prev])
+      } else {
+        await loadRatings()
+      }
       setName("")
       setRating(0)
       setComment("")

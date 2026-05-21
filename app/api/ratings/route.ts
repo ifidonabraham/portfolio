@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { addReview, getRatingSummary, readRatings } from "@/lib/ratings-db"
 
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+
 export async function GET() {
   const db = await readRatings()
   const summary = getRatingSummary(db.reviews)
@@ -48,11 +51,16 @@ export async function POST(request: Request) {
     const db = await readRatings()
     const summary = getRatingSummary(db.reviews)
 
-    return NextResponse.json({ review, summary }, { status: 201 })
-  } catch {
     return NextResponse.json(
-      { error: "Could not save your rating. Please try again." },
-      { status: 500 }
+      { review, summary, reviews: db.reviews },
+      { status: 201 }
     )
+  } catch (error) {
+    console.error("Rating save failed:", error)
+    const message =
+      process.env.NODE_ENV === "development" && error instanceof Error
+        ? error.message
+        : "Could not save your rating. Please try again."
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
