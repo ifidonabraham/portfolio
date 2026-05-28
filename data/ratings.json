@@ -1,3 +1,11 @@
 {
-  "reviews": []
+  "reviews": [
+    {
+      "id": "789a398f-ffb0-44bb-868e-2864b6cb4393",
+      "name": "ifidon",
+      "rating": 5,
+      "comment": "this is nice",
+      "createdAt": "2026-05-21T15:59:27.370Z"
+    }
+  ]
 }
