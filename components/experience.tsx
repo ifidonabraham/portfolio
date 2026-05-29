@@ -48,7 +48,7 @@ export function Experience() {
             className="flex items-center gap-2 mb-12"
           >
             <div className="h-1 w-12 bg-black dark:bg-white" />
-            <h2 className="text-3xl font-bold tracking-tight">Experience & Education</h2>
+            <h2 className="type-section">Experience & Education</h2>
           </motion.div>
 
           <div className="space-y-10">
@@ -63,19 +63,19 @@ export function Experience() {
               >
                 <div className="absolute left-[11px] top-8 h-3 w-3 rounded-full bg-black dark:bg-white" />
                 <div className="mb-4">
-                  <h3 className="text-xl font-bold">{exp.title}</h3>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-zinc-500">
-                    <span className="font-medium text-zinc-900 dark:text-zinc-100">
+                  <h3 className="type-project-title text-xl">{exp.title}</h3>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+                    <span className="type-body text-sm font-medium text-zinc-900 dark:text-zinc-100">
                       {exp.company}
                     </span>
-                    <span>{exp.period}</span>
+                    <span className="type-mono">{exp.period}</span>
                   </div>
                 </div>
                 <ul className="space-y-3">
                   {exp.achievements.map((achievement, i) => (
                     <li
                       key={i}
-                      className="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                      className="type-body"
                     >
                       • {achievement}
                     </li>

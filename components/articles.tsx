@@ -34,8 +34,8 @@ export function Articles() {
       <div className="container mx-auto px-4">
         <div className="mb-10 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold">Articles</h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-400">Writing on AI, engineering, and product execution.</p>
+            <h2 className="type-section">Articles</h2>
+            <p className="type-body mt-2">Writing on AI, engineering, and product execution.</p>
           </div>
           <a
             href="https://ifidonabraham.substack.com"
@@ -78,16 +78,14 @@ export function Articles() {
               )}
 
               <div className="p-6">
-                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                  {article.date}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
+                <p className="type-mono">{article.date}</p>
+                <h3 className="type-project-title mt-2 text-lg group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
                   {article.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                <p className="type-body mt-3 text-sm">
                   {article.excerpt}
                 </p>
-                <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+                <div className="type-mono mt-4 inline-flex items-center gap-2">
                   Read article
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>

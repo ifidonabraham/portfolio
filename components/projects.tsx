@@ -49,7 +49,7 @@ const projects = [
     description: "Built Dokito to help users keep health records, access emergency support, ask AI-powered health questions, and find nearby care facilities.",
     tech: ["LangChain.js", "Vercel AI SDK", "Openrouter", "Anthropic APIs", "Next.js"],
     liveUrl: "https://dokito.vercel.app/",
-    githubUrl: "",
+    githubUrl: "https://github.com/ifidonabraham/dokito",
     slug: "ai-powered-web-applications",
     category: "AI",
     learnings: "Applied prompt engineering and orchestration patterns to build more reliable AI features. Learned how to balance model quality, latency, and cost while keeping experiences useful for real users.",
@@ -82,7 +82,7 @@ export function Projects() {
           className="mb-8 flex items-center gap-2"
         >
           <div className="h-1 w-12 bg-black dark:bg-white" />
-          <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
+          <h2 className="type-section">Featured Projects</h2>
         </motion.div>
 
         <div className="mb-8 flex flex-wrap gap-2">
@@ -91,7 +91,7 @@ export function Projects() {
               key={item}
               type="button"
               onClick={() => setFilter(item)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+              className={`type-mono rounded-full px-4 py-2 transition ${
                 item === filter
                   ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
                   : "glass hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60"
@@ -139,8 +139,8 @@ export function Projects() {
               <div className="p-8">
                 <div className="mb-4 flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">{project.subtitle}</p>
+                    <h3 className="type-project-title">{project.title}</h3>
+                    <p className="type-body mt-1 text-sm">{project.subtitle}</p>
                   </div>
                   <div className="flex gap-4">
                     {project.githubUrl ? (
@@ -168,10 +168,10 @@ export function Projects() {
                   </div>
                 </div>
 
-                <span className="mb-3 inline-flex rounded-full bg-zinc-200 px-3 py-1 text-xs font-semibold dark:bg-zinc-800">
+                <span className="type-mono mb-3 inline-flex rounded-full bg-zinc-200 px-3 py-1 dark:bg-zinc-800">
                   {project.category}
                 </span>
-                <p className="mb-6 text-zinc-600 dark:text-zinc-400">
+                <p className="type-body mb-6">
                   {project.description}
                 </p>
 
@@ -179,7 +179,7 @@ export function Projects() {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium dark:bg-zinc-800"
+                      className="type-mono rounded-full bg-zinc-100 px-3 py-1 dark:bg-zinc-800"
                     >
                       {t}
                     </span>
@@ -187,10 +187,10 @@ export function Projects() {
                 </div>
 
                 <div className="rounded-xl bg-zinc-50 p-6 dark:bg-zinc-900/50">
-                   <h4 className="mb-2 text-sm font-bold uppercase tracking-wider text-zinc-500">
+                   <h4 className="type-mono mb-2">
                      What I learned
                    </h4>
-                   <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                   <p className="type-body text-sm">
                      {project.learnings}
                    </p>
                 </div>

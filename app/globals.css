@@ -27,6 +27,8 @@
   --radius-sm: calc(var(--radius) - 4px);
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-accent: var(--font-fraunces);
 }
 
 :root {
@@ -78,8 +80,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground selection:bg-zinc-200 dark:selection:bg-zinc-700;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    @apply text-foreground selection:bg-zinc-200 dark:selection:bg-zinc-700;
     transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
     background-image:
       radial-gradient(circle at 20% 15%, oklch(0.98 0.02 240 / 0.7), transparent 35%),
@@ -87,7 +95,7 @@
   }
 
   .dark body {
-    background-color: transparent;
+    background-color: #02040a;
     background-image: none;
   }
 
@@ -95,8 +103,8 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display), var(--font-sans), sans-serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    @apply tracking-tight;
   }
 
   a,
@@ -116,8 +124,77 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer utilities {
+  .font-body {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  }
+
+  .font-accent {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  }
+
+  .type-hero {
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    @apply text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-6xl lg:text-[4.5rem];
+  }
+
+  .type-hero-subtitle {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    @apply text-xl font-medium leading-snug text-zinc-600 dark:text-zinc-400 sm:text-2xl;
+  }
+
+  .type-section {
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    @apply text-3xl font-bold tracking-[-0.03em] sm:text-4xl;
+  }
+
+  .type-section-label {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    @apply text-[0.65rem] font-medium uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400;
+  }
+
+  .type-project-title {
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    @apply text-2xl font-semibold tracking-[-0.025em];
+  }
+
+  .type-stat-value {
+    font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    @apply text-4xl font-bold tracking-[-0.04em] sm:text-5xl;
+  }
+
+  .type-body {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    @apply text-base leading-relaxed text-zinc-700 dark:text-zinc-300;
+  }
+
+  .type-body-lg {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    @apply text-lg leading-8 text-zinc-700 dark:text-zinc-300;
+  }
+
+  .type-mono {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    @apply text-[0.7rem] font-medium uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400;
+  }
+
+  .type-quote {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+    @apply text-xl italic leading-relaxed text-zinc-800 dark:text-zinc-200 sm:text-2xl;
+  }
+
+  .type-accent-line {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+    @apply text-lg italic leading-relaxed text-zinc-700 dark:text-zinc-300;
+  }
 }
 
 .glass {

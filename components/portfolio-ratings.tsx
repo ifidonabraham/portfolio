@@ -169,7 +169,7 @@ export function PortfolioRatings() {
           className="mb-10 flex items-center gap-2"
         >
           <div className="h-1 w-12 bg-black dark:bg-white" />
-          <h2 className="text-3xl font-bold tracking-tight">Rate This Portfolio</h2>
+          <h2 className="type-section">Rate This Portfolio</h2>
         </motion.div>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -220,11 +220,11 @@ export function PortfolioRatings() {
             </p>
 
             <div className="mt-6">
-              <p className="mb-2 text-sm font-medium">Your rating</p>
+              <p className="type-mono mb-2">Your rating</p>
               <StarPicker value={rating} onChange={setRating} />
             </div>
 
-            <label className="mt-5 block text-sm font-medium">
+            <label className="type-mono mt-5 block">
               Name
               <input
                 required
@@ -236,7 +236,7 @@ export function PortfolioRatings() {
               />
             </label>
 
-            <label className="mt-4 block text-sm font-medium">
+            <label className="type-mono mt-4 block">
               Comment (optional)
               <textarea
                 value={comment}

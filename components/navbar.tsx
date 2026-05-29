@@ -41,7 +41,7 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight">
+        <Link href="/" className="font-display text-xl font-bold tracking-[-0.03em]">
           Ifidon<span className="text-zinc-500">.</span>
         </Link>
 
@@ -50,7 +50,7 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="group relative text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+              className="group relative font-body text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />

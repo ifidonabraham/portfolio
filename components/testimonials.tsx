@@ -39,8 +39,8 @@ export function Testimonials() {
     <section className="section-padding bg-zinc-50/70 dark:bg-zinc-900/30">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold">Testimonials</h2>
-          <p className="mt-3 text-zinc-600 dark:text-zinc-400">What people say about working with me.</p>
+          <h2 className="type-section">Testimonials</h2>
+          <p className="type-body mt-3">What people say about working with me.</p>
         </div>
 
         <div className="mx-auto mt-10 max-w-3xl">
@@ -54,12 +54,12 @@ export function Testimonials() {
               className="glass rounded-2xl p-8"
             >
               <Quote className="mx-auto mb-4 h-7 w-7 text-zinc-500" />
-              <blockquote className="text-center text-lg leading-relaxed">
+              <blockquote className="type-quote text-center">
                 &ldquo;{testimonials[index].quote}&rdquo;
               </blockquote>
               <figcaption className="mt-6 text-center">
-                <p className="font-semibold">{testimonials[index].author}</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">{testimonials[index].role}</p>
+                <p className="font-display font-semibold tracking-tight">{testimonials[index].author}</p>
+                <p className="type-mono mt-2">{testimonials[index].role}</p>
               </figcaption>
             </motion.figure>
           </AnimatePresence>

@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative z-10 flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
       <ScrollProgress />
       <Navbar />
       <main className="flex-grow">

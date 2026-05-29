@@ -16,7 +16,7 @@ export function About() {
             className="flex items-center gap-2 mb-8"
           >
             <div className="h-1 w-12 bg-black dark:bg-white" />
-            <h2 className="text-3xl font-bold tracking-tight">About Me</h2>
+            <h2 className="type-section">About Me</h2>
           </motion.div>
 
           <div className="grid gap-10 md:grid-cols-3">
@@ -24,15 +24,15 @@ export function About() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-2 space-y-6 leading-8"
+              className="md:col-span-2 space-y-6"
             >
-              <p className="text-lg text-zinc-700 dark:text-zinc-300">
+              <p className="type-body-lg">
                 Ifidon Abraham is a passionate Software Developer and 200-level student at the University of Lagos (UNILAG). With a deep fascination for Artificial Intelligence and its growing impact across every industry, he is particularly drawn to the science behind AI and how it continues to expand human knowledge and capabilities.
               </p>
-              <p className="text-lg text-zinc-700 dark:text-zinc-300">
+              <p className="type-body-lg">
                 His journey into tech began with YouTube tutorials and has since evolved into a strong focus on AI-driven development. Currently, AI remains his biggest motivation. He enjoys building intelligent systems and is especially interested in creating practical solutions that leverage AI to solve real-world problems.
               </p>
-              <p className="text-lg text-zinc-700 dark:text-zinc-300">
+              <p className="type-body-lg">
                 Ifidon aspires to work with forward-thinking companies and startups in the AI space, while also helping small businesses grow through well-designed, modern websites. Known among peers as an excellent presenter, he is comfortable communicating technical ideas clearly and confidently.
               </p>
             </motion.div>
@@ -48,8 +48,8 @@ export function About() {
                   <User className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">Name</p>
-                  <p className="text-sm text-zinc-500">Ifidon Abraham Ayomide</p>
+                  <p className="type-mono">Name</p>
+                  <p className="type-body mt-1 text-sm">Ifidon Abraham Ayomide</p>
                 </div>
               </div>
 
@@ -58,8 +58,8 @@ export function About() {
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">Education</p>
-                  <p className="text-sm text-zinc-500">B.Sc. Computer Science (Expected 2028), UNILAG</p>
+                  <p className="type-mono">Education</p>
+                  <p className="type-body mt-1 text-sm">B.Sc. Computer Science (Expected 2028), UNILAG</p>
                 </div>
               </div>
 
@@ -68,8 +68,8 @@ export function About() {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">Location</p>
-                  <p className="text-sm text-zinc-500">Lagos, Nigeria</p>
+                  <p className="type-mono">Location</p>
+                  <p className="type-body mt-1 text-sm">Lagos, Nigeria</p>
                 </div>
               </div>
             </motion.div>

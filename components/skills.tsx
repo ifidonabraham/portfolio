@@ -94,7 +94,7 @@ export function Skills() {
           className="flex items-center gap-2 mb-12 justify-center"
         >
           <div className="h-1 w-12 bg-black dark:bg-white" />
-          <h2 className="text-3xl font-bold tracking-tight">Tech Stack</h2>
+          <h2 className="type-section">Tech Stack</h2>
         </motion.div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -107,9 +107,7 @@ export function Skills() {
               transition={{ delay: idx * 0.1 }}
               className="space-y-4"
             >
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">
-                {category.name}
-              </h3>
+              <h3 className="type-mono">{category.name}</h3>
               <div className="grid grid-cols-1 gap-3">
                 {category.skills.map((skill) => (
                   <motion.div
@@ -119,7 +117,7 @@ export function Skills() {
                   >
                     <div className="flex items-center gap-3">
                       <skill.icon className="h-5 w-5 text-zinc-600 dark:text-zinc-300" />
-                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="font-body text-sm font-medium">{skill.name}</span>
                     </div>
                     <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-200 dark:bg-zinc-700">
                       <motion.div

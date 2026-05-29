@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -10,11 +10,26 @@ import { SkyBackground } from "@/components/sky-background-loader";
 const bodyFont = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const headingFont = Space_Grotesk({
+const displayFont = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const monoFont = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const accentFont = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -58,7 +73,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: "(prefers-color-scheme: dark)", color: "#02040a" },
   ],
 };
 
@@ -72,8 +87,10 @@ export default function RootLayout({
       <body
         className={cn(
           bodyFont.variable,
-          headingFont.variable,
-          "min-h-screen bg-background font-sans antialiased selection:bg-zinc-200 dark:bg-transparent dark:selection:bg-zinc-800"
+          displayFont.variable,
+          monoFont.variable,
+          accentFont.variable,
+          "font-body min-h-screen bg-background text-foreground antialiased selection:bg-zinc-200 dark:bg-[#02040a] dark:selection:bg-zinc-800"
         )}
       >
         <ThemeProvider
@@ -83,7 +100,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SkyBackground />
-          {children}
+          <div className="relative z-[2]">{children}</div>
           <Toaster
             position="top-right"
             toastOptions={{

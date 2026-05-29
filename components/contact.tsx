@@ -52,7 +52,7 @@ export function Contact() {
             className="flex items-center gap-2 mb-12 justify-center text-center"
           >
             <div className="h-1 w-12 bg-black dark:bg-white" />
-            <h2 className="text-3xl font-bold tracking-tight">Get In Touch</h2>
+            <h2 className="type-section">Get In Touch</h2>
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-2">
@@ -63,9 +63,9 @@ export function Contact() {
               viewport={{ once: true }}
               className="glass rounded-2xl p-6 sm:p-8"
             >
-              <h3 className="mb-5 text-xl font-semibold">Send a message</h3>
+              <h3 className="type-project-title mb-5 text-xl">Send a message</h3>
               <div className="space-y-4">
-                <label className="block text-sm font-medium">
+                <label className="type-mono block">
                   Name
                   <input
                     required
@@ -76,7 +76,7 @@ export function Contact() {
                     placeholder="Your name"
                   />
                 </label>
-                <label className="block text-sm font-medium">
+                <label className="type-mono block">
                   Email
                   <input
                     required
@@ -88,7 +88,7 @@ export function Contact() {
                     placeholder="you@example.com"
                   />
                 </label>
-                <label className="block text-sm font-medium">
+                <label className="type-mono block">
                   Message
                   <textarea
                     required
@@ -127,8 +127,8 @@ export function Contact() {
                   <div className="mb-3 rounded-full bg-zinc-100 p-3 dark:bg-zinc-900">
                     <link.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mb-1 font-bold">{link.name}</h3>
-                  <p className="text-xs text-zinc-500">{link.value}</p>
+                  <h3 className="type-project-title mb-1 text-base">{link.name}</h3>
+                  <p className="type-mono">{link.value}</p>
                 </motion.a>
               ))}
             </div>

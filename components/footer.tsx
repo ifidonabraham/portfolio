@@ -13,15 +13,15 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="text-lg font-semibold">Ifidon Abraham Ayomide</p>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="font-display text-lg font-semibold tracking-tight">Ifidon Abraham Ayomide</p>
+            <p className="type-body mt-2 text-sm">
               Software Developer and AI enthusiast building modern digital products.
             </p>
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500">Quick Links</p>
-            <div className="mt-3 flex flex-wrap gap-4 text-sm">
+            <p className="type-mono">Quick Links</p>
+            <div className="type-body mt-3 flex flex-wrap gap-4 text-sm">
               <a href="#about" className="hover:underline">About</a>
               <a href="#projects" className="hover:underline">Projects</a>
               <a href="#articles" className="hover:underline">Articles</a>
@@ -52,8 +52,8 @@ export function Footer() {
               setEmail("")
             }}
           >
-            <p className="text-sm font-semibold">Newsletter</p>
-            <p className="mt-1 text-xs text-zinc-500">Get occasional updates on new builds and articles.</p>
+            <p className="type-mono">Newsletter</p>
+            <p className="type-body mt-1 text-xs">Get occasional updates on new builds and articles.</p>
             <div className="mt-3 flex gap-2">
               <label className="sr-only" htmlFor="newsletter-email">Email</label>
               <input
@@ -72,7 +72,7 @@ export function Footer() {
           </form>
         </div>
 
-        <div className="mt-10 border-t border-zinc-200 pt-6 text-sm text-zinc-500 dark:border-zinc-800">
+        <div className="type-body mt-10 border-t border-zinc-200 pt-6 text-sm dark:border-zinc-800">
           <p>
             © {currentYear} Ifidon Abraham Ayomide. All rights reserved.
           </p>
