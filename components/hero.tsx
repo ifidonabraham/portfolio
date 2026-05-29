@@ -84,14 +84,14 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Background gradients */}
+      {/* Light-mode only — blur hides the 3D sky in dark mode */}
       <motion.div
         style={{ y }}
-        className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-200/60 blur-[100px] dark:bg-zinc-700/30"
+        className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-200/60 blur-[100px] dark:hidden"
       />
       <motion.div
         style={{ y: useTransform(scrollY, [0, 400], [0, -60]) }}
-        className="absolute top-1/4 left-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-zinc-100/70 blur-[80px] dark:bg-zinc-800/20"
+        className="absolute top-1/4 left-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-zinc-100/70 blur-[80px] dark:hidden"
       />
     </section>
   )

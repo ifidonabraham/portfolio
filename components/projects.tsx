@@ -7,6 +7,32 @@ import { Github, ExternalLink } from "lucide-react"
 
 const projects = [
   {
+    title: "StormBridge AI",
+    subtitle: "Operational Weather Intelligence Platform",
+    description:
+      "Built a full-stack platform for fast weather risk checks, AI-generated safety guidance, community hazard reports, responder coordination, and offline-ready alert cards. A multi-agent chain analyzes locations, escalates high-priority signals, and keeps the latest plan available when connectivity drops.",
+    tech: ["Next.js", "TypeScript", "Supabase", "NVIDIA AI", "Tailwind CSS", "Open-Meteo"],
+    liveUrl: "https://stormbrigde.vercel.app/",
+    githubUrl: "https://github.com/ifidonabraham/stormbridge",
+    slug: "stormbridge",
+    category: "AI",
+    learnings:
+      "Designed an end-to-end agent pipeline with structured JSON outputs and deterministic fallbacks so the product stays reliable when providers fail. Learned how to connect live weather data, field reports, responder workflows, and offline storage into one operational dashboard.",
+  },
+  {
+    title: "SystemGuardian",
+    subtitle: "Multi-Agent Windows Resource Protection",
+    description:
+      "Built a .NET desktop system that monitors CPU, RAM, GPU, and disk usage in real time, forecasts load 30 seconds ahead, and applies graduated actions (throttle, suspend, graceful close, force kill) only after a multi-step safety gate. Includes process-tree awareness, foreground-app protection, SQLite audit logging, and nightly model retraining from user feedback.",
+    tech: ["C#", ".NET 8", "ML.NET", "WPF", "SQLite", "Multi-Agent"],
+    liveUrl: "",
+    githubUrl: "https://github.com/ifidonabraham/SystemGuardian",
+    slug: "system-guardian",
+    category: "AI",
+    learnings:
+      "Learned how to coordinate specialized agents (monitoring, forecasting, ranking, execution, whitelist guard, logging, UI, feedback) under a master orchestrator with tiered thresholds. Balancing aggressive resource recovery with user safety required careful whitelist rules and foreground-process protection.",
+  },
+  {
     title: "Real Estate Finder",
     subtitle: "Full-Stack Real Estate Platform",
     description: "Built a modern web application that allows users to browse property listings, message agents, and manage real estate listings. Developed responsive and user-friendly interface with clean design and smooth navigation.",

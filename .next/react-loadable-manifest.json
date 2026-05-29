@@ -1,4 +1,10 @@
 {
+  "components\\sky-background-loader.tsx -> @/components/sky-background": {
+    "id": "components\\sky-background-loader.tsx -> @/components/sky-background",
+    "files": [
+      "static/chunks/_app-pages-browser_components_sky-background_tsx.js"
+    ]
+  },
   "node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js": {
     "id": "node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js",
     "files": []

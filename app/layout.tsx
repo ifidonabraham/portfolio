@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { PROFILE_IMAGE, SITE_URL } from "@/lib/site";
 import { Toaster } from "sonner";
-import { SkyBackground } from "@/components/sky-background";
+import { SkyBackground } from "@/components/sky-background-loader";
 
 const bodyFont = Inter({
   variable: "--font-inter",
@@ -73,7 +73,7 @@ export default function RootLayout({
         className={cn(
           bodyFont.variable,
           headingFont.variable,
-          "min-h-screen bg-background font-sans antialiased selection:bg-zinc-200 dark:selection:bg-zinc-800"
+          "min-h-screen bg-background font-sans antialiased selection:bg-zinc-200 dark:bg-transparent dark:selection:bg-zinc-800"
         )}
       >
         <ThemeProvider
