@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { PROFILE_IMAGE, SITE_URL } from "@/lib/site";
 import { Toaster } from "sonner";
-import { SkyBackground } from "@/components/sky-background-loader";
 
 const bodyFont = Inter({
   variable: "--font-inter",
@@ -99,8 +98,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SkyBackground />
-          <div className="relative z-[2]">{children}</div>
+          {children}
           <Toaster
             position="top-right"
             toastOptions={{
