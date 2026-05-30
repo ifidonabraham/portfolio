@@ -1,40 +1,38 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Download } from "lucide-react"
-import { PROFILE_IMAGE } from "@/lib/site"
 import { SpaceModelBackground } from "@/components/space-model-loader"
+import { HeroRings } from "@/components/hero-rings"
+import { ParticleField } from "@/components/particle-field"
+import { OpportunityBadge } from "@/components/opportunity-badge"
+import { ScrollIndicator } from "@/components/scroll-indicator"
+import { ProfileTilt } from "@/components/profile-tilt"
 
 export function Hero() {
   return (
     <section className="relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#02040a] pt-20">
       <SpaceModelBackground />
+      <ParticleField />
 
       <div className="container relative z-10 mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 flex justify-center"
+          className="mb-8 flex justify-center relative"
+          style={{ perspective: "1000px" }}
         >
-          <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-xl dark:border-zinc-800">
-            <Image
-              src={PROFILE_IMAGE}
-              alt="Ifidon Abraham Ayomide"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          <HeroRings />
+          <ProfileTilt />
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="type-hero mb-4 text-white"
+          className="type-hero mb-4 gradient-text"
         >
           Ifidon Abraham Ayomide
         </motion.h1>
@@ -43,15 +41,24 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="type-hero-subtitle mb-4 text-zinc-300"
+          className="type-hero-subtitle mb-6 text-zinc-300"
         >
           Software Developer & AI Enthusiast
         </motion.p>
 
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mb-8 flex justify-center"
+        >
+          <OpportunityBadge />
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           className="mx-auto mb-8 max-w-2xl"
         >
           <span className="type-accent-line inline-block overflow-hidden whitespace-nowrap border-r-2 border-zinc-400 pr-2 align-bottom text-zinc-200 [animation:typing_3s_steps(55,end),blink_1s_step-end_infinite]">
@@ -62,7 +69,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
@@ -81,6 +88,8 @@ export function Hero() {
             <Download className="h-4 w-4" />
           </a>
         </motion.div>
+
+        <ScrollIndicator />
       </div>
     </section>
   )

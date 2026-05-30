@@ -1,26 +1,27 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { 
-  Atom, 
-  Braces, 
-  LayoutTemplate, 
-  Wind, 
-  Layers, 
-  Move, 
-  Server, 
-  Zap, 
-  Gauge, 
-  Hexagon, 
-  Database, 
-  Cylinder, 
-  Plug, 
-  Triangle, 
-  Container, 
-  Workflow, 
-  Sparkles, 
-  Link2, 
+import {
+  Atom,
+  Braces,
+  LayoutTemplate,
+  Wind,
+  Layers,
+  Move,
+  Server,
+  Zap,
+  Gauge,
+  Hexagon,
+  Database,
+  Cylinder,
+  Plug,
+  Triangle,
+  Container,
+  Workflow,
+  Sparkles,
+  Link2,
   Brain,
   FileCode2,
   FileJson,
@@ -32,6 +33,8 @@ import {
 const skillCategories = [
   {
     name: "Frontend",
+    color: "from-blue-500 to-blue-600",
+    glowColor: "rgba(59, 130, 246, 0.2)",
     skills: [
       { name: "Next.js 15", icon: LayoutTemplate, level: 90 },
       { name: "React 19", icon: Atom, level: 88 },
@@ -43,6 +46,8 @@ const skillCategories = [
   },
   {
     name: "Backend",
+    color: "from-green-500 to-green-600",
+    glowColor: "rgba(34, 197, 94, 0.2)",
     skills: [
       { name: "Node.js", icon: Server, level: 86 },
       { name: "Server Actions", icon: Zap, level: 84 },
@@ -54,6 +59,8 @@ const skillCategories = [
   },
   {
     name: "Database & ORM",
+    color: "from-amber-500 to-amber-600",
+    glowColor: "rgba(217, 119, 6, 0.2)",
     skills: [
       { name: "PostgreSQL", icon: Database, level: 82 },
       { name: "Prisma", icon: Cylinder, level: 80 },
@@ -63,6 +70,8 @@ const skillCategories = [
   },
   {
     name: "DevOps & Tools",
+    color: "from-violet-500 to-violet-600",
+    glowColor: "rgba(139, 92, 246, 0.2)",
     skills: [
       { name: "Vercel", icon: Triangle, level: 88 },
       { name: "Docker", icon: Container, level: 75 },
@@ -74,6 +83,8 @@ const skillCategories = [
   },
   {
     name: "AI & Integrations",
+    color: "from-pink-500 to-pink-600",
+    glowColor: "rgba(236, 72, 153, 0.2)",
     skills: [
       { name: "Vercel AI SDK", icon: Sparkles, level: 82 },
       { name: "LangChain.js", icon: Link2, level: 84 },
@@ -82,6 +93,78 @@ const skillCategories = [
     ],
   },
 ]
+
+function SkillCard({ skill, categoryColor, glowColor }: { skill: any; categoryColor: string; glowColor: string }) {
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const rotX = (y - centerY) / 20
+    const rotY = -(x - centerX) / 20
+
+    setRotateX(rotX)
+    setRotateY(rotY)
+  }
+
+  const handleMouseLeave = () => {
+    setRotateX(0)
+    setRotateY(0)
+  }
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ y: -5 }}
+      style={{
+        perspective: "1000px",
+        transformStyle: "preserve-3d",
+        rotateX,
+        rotateY,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="group relative glass rounded-lg p-3 overflow-hidden"
+    >
+      <motion.div
+        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at top right, ${glowColor}, transparent)`,
+        }}
+      />
+
+      {/* Shimmer effect */}
+      <div className="absolute inset-0 overflow-hidden rounded-lg">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          animate={{ x: ["−100%", "100%"] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      </div>
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-3">
+          <skill.icon className="h-5 w-5 text-zinc-600 dark:text-zinc-300" />
+          <span className="font-body text-sm font-medium">{skill.name}</span>
+        </div>
+        <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-200 dark:bg-zinc-700">
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: `${skill.level}%` }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={`h-1.5 rounded-full bg-gradient-to-r ${categoryColor}`}
+          />
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 export function Skills() {
   return (
@@ -110,25 +193,12 @@ export function Skills() {
               <h3 className="type-mono">{category.name}</h3>
               <div className="grid grid-cols-1 gap-3">
                 {category.skills.map((skill) => (
-                  <motion.div
+                  <SkillCard
                     key={skill.name}
-                    whileHover={{ y: -3, scale: 1.01 }}
-                    className="glass rounded-lg p-3"
-                  >
-                    <div className="flex items-center gap-3">
-                      <skill.icon className="h-5 w-5 text-zinc-600 dark:text-zinc-300" />
-                      <span className="font-body text-sm font-medium">{skill.name}</span>
-                    </div>
-                    <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-200 dark:bg-zinc-700">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="h-1.5 rounded-full bg-zinc-800 dark:bg-zinc-200"
-                      />
-                    </div>
-                  </motion.div>
+                    skill={skill}
+                    categoryColor={category.color}
+                    glowColor={category.glowColor}
+                  />
                 ))}
               </div>
             </motion.div>

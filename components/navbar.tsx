@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
@@ -18,13 +19,27 @@ const navItems = [
 ]
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = React.useState(false)
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
+
+      // Detect active section
+      const sections = navItems.map((item) => item.href.slice(1))
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 100) {
+            setActiveSection(section)
+          }
+        }
+      }
     }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -41,21 +56,37 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="font-display text-xl font-bold tracking-[-0.03em]">
+        <Link href="/" className="font-display text-xl font-bold tracking-[-0.03em] hover:opacity-80 transition-opacity">
           Ifidon<span className="text-zinc-500">.</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group relative font-body text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+        <nav className="hidden md:flex items-center gap-1 rounded-full glass px-6 py-2">
+          {navItems.map((item) => {
+            const sectionId = item.href.slice(1)
+            const isActive = activeSection === sectionId
+            return (
+              <div key={item.name} className="relative">
+                {isActive && (
+                  <motion.div
+                    layoutId="active-pill"
+                    className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/10"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full",
+                    isActive
+                      ? "text-black dark:text-white"
+                      : "text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              </div>
+            )
+          })}
           <ThemeToggle />
         </nav>
 
@@ -66,31 +97,34 @@ export function Navbar() {
             aria-expanded={isOpen}
             aria-label="Toggle menu"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="rounded-full border border-zinc-300 p-2 dark:border-zinc-700"
+            className="rounded-full border border-zinc-300 p-2 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
 
-      {isOpen ? (
+      <motion.div
+        animate={{ height: isOpen ? "auto" : 0 }}
+        className="overflow-hidden md:hidden"
+      >
         <motion.nav
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass container mx-auto mt-3 flex flex-col gap-2 rounded-2xl px-4 py-4 md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          className="glass container mx-auto mt-3 flex flex-col gap-2 rounded-2xl px-4 py-4"
         >
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               {item.name}
             </Link>
           ))}
         </motion.nav>
-      ) : null}
+      </motion.div>
     </motion.header>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Github, ExternalLink } from "lucide-react"
@@ -67,6 +68,175 @@ const projects = [
   },
 ]
 
+function ProjectCard({ project, idx }: { project: any; idx: number }) {
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const rotX = (y - centerY) / 30
+    const rotY = -(x - centerX) / 30
+
+    setRotateX(rotX)
+    setRotateY(rotY)
+  }
+
+  const handleMouseLeave = () => {
+    setRotateX(0)
+    setRotateY(0)
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: idx * 0.1 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.02 }}
+      style={{
+        perspective: "1000px",
+        transformStyle: "preserve-3d",
+        rotateX,
+        rotateY,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="group glass overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-2xl"
+    >
+      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
+        <div className="absolute inset-0 z-10 bg-black/5 opacity-0 transition-opacity group-hover:opacity-100" />
+
+        {/* Grid overlay */}
+        <motion.div
+          className="absolute inset-0 opacity-0 group-hover:opacity-30 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(0deg, transparent 24%, rgba(124, 58, 237, 0.05) 25%, rgba(124, 58, 237, 0.05) 26%, transparent 27%, transparent 74%, rgba(124, 58, 237, 0.05) 75%, rgba(124, 58, 237, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(124, 58, 237, 0.05) 25%, rgba(124, 58, 237, 0.05) 26%, transparent 27%, transparent 74%, rgba(124, 58, 237, 0.05) 75%, rgba(124, 58, 237, 0.05) 76%, transparent 77%, transparent)",
+            backgroundSize: "50px 50px",
+          }}
+        />
+
+        {/* Floating orbs */}
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-r from-violet-400/20 to-blue-400/20 blur-xl"
+            style={{
+              width: `${100 + i * 50}px`,
+              height: `${100 + i * 50}px`,
+              left: `${20 + i * 30}%`,
+              top: `${10 + i * 20}%`,
+            }}
+            animate={{
+              y: [0, 20, 0],
+              x: [0, 10, 0],
+            }}
+            transition={{
+              duration: 3 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        <Image
+          src={`/projects/${project.slug}/desktop.png`}
+          alt={`${project.title} desktop preview`}
+          fill
+          loading="lazy"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={(event) => {
+            const target = event.currentTarget
+            target.style.display = "none"
+            const placeholder = target.parentElement?.querySelector("[data-placeholder]")
+            if (placeholder instanceof HTMLElement) placeholder.style.display = "flex"
+          }}
+        />
+        <div
+          data-placeholder
+          className="h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 hidden"
+        >
+          <span className="font-medium text-zinc-500">{project.title} Preview</span>
+        </div>
+      </div>
+
+      <div className="p-8">
+        <div className="mb-4 flex items-start justify-between gap-3">
+          <div>
+            <h3 className="type-project-title">{project.title}</h3>
+            <p className="type-body mt-1 text-sm">{project.subtitle}</p>
+          </div>
+          <div className="flex gap-4">
+            {project.githubUrl ? (
+              <motion.a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md p-1 text-zinc-500 hover:bg-zinc-200/60 hover:text-black dark:hover:bg-zinc-800 dark:hover:text-white transition-all"
+                aria-label={`${project.title} GitHub`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Github className="h-5 w-5" />
+              </motion.a>
+            ) : null}
+            {project.liveUrl ? (
+              <motion.a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md p-1 text-zinc-500 hover:bg-zinc-200/60 hover:text-black dark:hover:bg-zinc-800 dark:hover:text-white transition-all"
+                aria-label={`${project.title} Live demo`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ExternalLink className="h-5 w-5" />
+              </motion.a>
+            ) : null}
+          </div>
+        </div>
+
+        <span className="type-mono mb-3 inline-flex rounded-full bg-gradient-to-r from-violet-500/10 to-blue-500/10 px-3 py-1 text-violet-600 dark:text-violet-400">
+          {project.category}
+        </span>
+        <p className="type-body mb-6">
+          {project.description}
+        </p>
+
+        <div className="mb-8 flex flex-wrap gap-2">
+          {project.tech.map((t) => (
+            <motion.span
+              key={t}
+              className="type-mono rounded-full bg-zinc-100 px-3 py-1 dark:bg-zinc-800"
+              whileHover={{ scale: 1.05 }}
+            >
+              {t}
+            </motion.span>
+          ))}
+        </div>
+
+        <motion.div
+          className="rounded-xl bg-gradient-to-br from-violet-500/5 to-blue-500/5 p-6 border border-violet-200/20 dark:border-violet-800/20"
+          whileHover={{ borderColor: "rgba(124, 58, 237, 0.4)" }}
+        >
+          <h4 className="type-mono mb-2">
+            What I learned
+          </h4>
+          <p className="type-body text-sm">
+            {project.learnings}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
+
 export function Projects() {
   const [filter, setFilter] = React.useState("All")
   const filters = ["All", ...new Set(projects.map((project) => project.category))]
@@ -87,10 +257,12 @@ export function Projects() {
 
         <div className="mb-8 flex flex-wrap gap-2">
           {filters.map((item) => (
-            <button
+            <motion.button
               key={item}
               type="button"
               onClick={() => setFilter(item)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`type-mono rounded-full px-4 py-2 transition ${
                 item === filter
                   ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
@@ -98,104 +270,13 @@ export function Projects() {
               }`}
             >
               {item}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {visibleProjects.map((project, idx) => (
-            <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -4, rotateX: 1, rotateY: -1 }}
-              className="group glass overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-xl"
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <div className="absolute inset-0 z-10 bg-black/5 opacity-0 transition-opacity group-hover:opacity-100" />
-                <Image
-                  src={`/projects/${project.slug}/desktop.png`}
-                  alt={`${project.title} desktop preview`}
-                  fill
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(event) => {
-                    const target = event.currentTarget
-                    target.style.display = "none"
-                    const placeholder = target.parentElement?.querySelector("[data-placeholder]")
-                    if (placeholder instanceof HTMLElement) placeholder.style.display = "flex"
-                  }}
-                />
-                <div
-                  data-placeholder
-                  className="h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 hidden"
-                >
-                  <span className="font-medium text-zinc-500">{project.title} Preview</span>
-                </div>
-              </div>
-
-              <div className="p-8">
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="type-project-title">{project.title}</h3>
-                    <p className="type-body mt-1 text-sm">{project.subtitle}</p>
-                  </div>
-                  <div className="flex gap-4">
-                    {project.githubUrl ? (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md p-1 text-zinc-500 hover:bg-zinc-200/60 hover:text-black dark:hover:bg-zinc-800 dark:hover:text-white"
-                        aria-label={`${project.title} GitHub`}
-                      >
-                        <Github className="h-5 w-5" />
-                      </a>
-                    ) : null}
-                    {project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-md p-1 text-zinc-500 hover:bg-zinc-200/60 hover:text-black dark:hover:bg-zinc-800 dark:hover:text-white"
-                        aria-label={`${project.title} Live demo`}
-                      >
-                        <ExternalLink className="h-5 w-5" />
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-
-                <span className="type-mono mb-3 inline-flex rounded-full bg-zinc-200 px-3 py-1 dark:bg-zinc-800">
-                  {project.category}
-                </span>
-                <p className="type-body mb-6">
-                  {project.description}
-                </p>
-
-                <div className="mb-8 flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="type-mono rounded-full bg-zinc-100 px-3 py-1 dark:bg-zinc-800"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="rounded-xl bg-zinc-50 p-6 dark:bg-zinc-900/50">
-                   <h4 className="type-mono mb-2">
-                     What I learned
-                   </h4>
-                   <p className="type-body text-sm">
-                     {project.learnings}
-                   </p>
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.slug} project={project} idx={idx} />
           ))}
         </div>
       </div>
