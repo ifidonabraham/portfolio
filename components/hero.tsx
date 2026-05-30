@@ -5,11 +5,11 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Download } from "lucide-react"
 import { PROFILE_IMAGE } from "@/lib/site"
-import { SpaceModelBackground } from "@/components/space-model-background"
+import { SpaceModelBackground } from "@/components/space-model-loader"
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#02040a] pt-20 dark:bg-[#02040a]">
+    <section className="relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#02040a] pt-20">
       <SpaceModelBackground />
 
       <div className="container relative z-10 mx-auto px-4 text-center">
