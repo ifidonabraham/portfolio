@@ -40,7 +40,7 @@ function CarModel() {
 function CarSceneContent() {
   return (
     <>
-      <color attach="background" args={["#02040a"]} />
+      <color attach="background" args={["transparent"]} />
       <ambientLight intensity={1.5} />
       <directionalLight position={[10, 10, 10]} intensity={2} />
       <pointLight position={[0, 5, 5]} intensity={1} color="#6366f1" />
@@ -59,24 +59,23 @@ function CarSceneContent() {
   )
 }
 
-export function CarScrollScene() {
+export function CarScrollBackground() {
   return (
-    <section className="relative w-full min-h-screen bg-[#02040a] flex items-center justify-center overflow-hidden">
+    <div
+      className="fixed inset-0 pointer-events-none z-0"
+      aria-hidden="true"
+      style={{ top: "50vh" }}
+    >
       <Canvas
         frameloop="always"
         dpr={[1, 2]}
         camera={{ position: [0, 0, 15], fov: 50, near: 0.1, far: 1000 }}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
-        style={{ width: "100%", height: "100%", position: "absolute" }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        style={{ width: "100%", height: "100%", display: "block" }}
       >
         <CarSceneContent />
       </Canvas>
-
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-[#02040a]/50 via-transparent to-[#02040a]/50 pointer-events-none"
-        aria-hidden
-      />
-    </section>
+    </div>
   )
 }
 

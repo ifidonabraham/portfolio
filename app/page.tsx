@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
-import { CarScrollScene } from "@/components/car-scroll-scene";
+import { CarScrollBackground } from "@/components/car-scroll-scene";
 import { About } from "@/components/about";
 import { Skills } from "@/components/skills";
 import { Projects } from "@/components/projects";
@@ -35,10 +35,10 @@ export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col">
       <ScrollProgress />
+      <CarScrollBackground />
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         <Hero />
-        <CarScrollScene />
         <Stats />
         <SectionDivider />
         <About />
