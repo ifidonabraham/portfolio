@@ -40,7 +40,7 @@ function CarModel() {
 function CarSceneContent() {
   return (
     <>
-      <color attach="background" args={["transparent"]} />
+      <color attach="background" args={["#02040a"]} />
       <ambientLight intensity={1.5} />
       <directionalLight position={[10, 10, 10]} intensity={2} />
       <pointLight position={[0, 5, 5]} intensity={1} color="#6366f1" />
