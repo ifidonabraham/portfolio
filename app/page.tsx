@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { CarScrollScene } from "@/components/car-scroll-scene";
 import { About } from "@/components/about";
 import { Skills } from "@/components/skills";
 import { Projects } from "@/components/projects";
@@ -37,6 +38,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <CarScrollScene />
         <Stats />
         <SectionDivider />
         <About />
