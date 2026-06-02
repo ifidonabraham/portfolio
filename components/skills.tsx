@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { 
+import { AnimatedWords } from "@/components/animated-words"
+import {
   Atom, 
   Braces, 
   LayoutTemplate, 
@@ -87,15 +88,18 @@ export function Skills() {
   return (
     <section id="skills" className="section-padding">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-2 mb-12 justify-center"
-        >
-          <div className="h-1 w-12 bg-black dark:bg-white" />
-          <h2 className="type-section">Tech Stack</h2>
-        </motion.div>
+        <div className="flex items-center gap-2 mb-12 justify-center">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="h-1 w-12 bg-black dark:bg-white origin-left"
+          />
+          <h2 className="type-section">
+            <AnimatedWords text="Tech Stack" />
+          </h2>
+        </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {skillCategories.map((category, idx) => (

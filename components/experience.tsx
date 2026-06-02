@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
+import { AnimatedWords } from "@/components/animated-words"
 
 const experiences = [
   {
@@ -36,20 +37,33 @@ const experiences = [
   },
 ]
 
+const listContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+}
+
+const listItem = {
+  hidden: { opacity: 0, x: -12 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
+}
+
 export function Experience() {
   return (
     <section id="experience" className="section-padding">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-2 mb-12"
-          >
-            <div className="h-1 w-12 bg-black dark:bg-white" />
-            <h2 className="type-section">Experience & Education</h2>
-          </motion.div>
+          <div className="flex items-center gap-2 mb-12">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="h-1 w-12 bg-black dark:bg-white origin-left"
+            />
+            <h2 className="type-section">
+              <AnimatedWords text="Experience & Education" />
+            </h2>
+          </div>
 
           <div className="space-y-10">
             {experiences.map((exp, idx) => (
@@ -61,7 +75,13 @@ export function Experience() {
                 transition={{ delay: idx * 0.1 }}
                 className="glass relative rounded-2xl p-6 pl-8 before:absolute before:left-4 before:top-8 before:h-[calc(100%-2rem)] before:w-[2px] before:bg-zinc-200 dark:before:bg-zinc-700"
               >
-                <div className="absolute left-[11px] top-8 h-3 w-3 rounded-full bg-black dark:bg-white" />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 + 0.2, type: "spring", stiffness: 300 }}
+                  className="absolute left-[11px] top-8 h-3 w-3 rounded-full bg-black dark:bg-white"
+                />
                 <div className="mb-4">
                   <h3 className="type-project-title text-xl">{exp.title}</h3>
                   <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -71,16 +91,19 @@ export function Experience() {
                     <span className="type-mono">{exp.period}</span>
                   </div>
                 </div>
-                <ul className="space-y-3">
+                <motion.ul
+                  variants={listContainer}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="space-y-3"
+                >
                   {exp.achievements.map((achievement, i) => (
-                    <li
-                      key={i}
-                      className="type-body"
-                    >
+                    <motion.li key={i} variants={listItem} className="type-body">
                       • {achievement}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </motion.div>
             ))}
           </div>

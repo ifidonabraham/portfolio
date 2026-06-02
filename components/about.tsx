@@ -3,21 +3,25 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { GraduationCap, MapPin, User } from "lucide-react"
+import { AnimatedWords } from "@/components/animated-words"
 
 export function About() {
   return (
     <section id="about" className="section-padding bg-zinc-50/60 dark:bg-zinc-900/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-2 mb-8"
-          >
-            <div className="h-1 w-12 bg-black dark:bg-white" />
-            <h2 className="type-section">About Me</h2>
-          </motion.div>
+          <div className="flex items-center gap-2 mb-8">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="h-1 w-12 bg-black dark:bg-white origin-left"
+            />
+            <h2 className="type-section">
+              <AnimatedWords text="About Me" />
+            </h2>
+          </div>
 
           <div className="grid gap-10 md:grid-cols-3">
             <motion.div

@@ -45,7 +45,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="type-hero-subtitle mb-4 text-zinc-300"
         >
-          Software Developer & AI Enthusiast
+          Software Developer, Full-stack developer  & AI Enthusiast
         </motion.p>
 
         <motion.p

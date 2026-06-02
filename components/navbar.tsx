@@ -20,13 +20,32 @@ const navItems = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
+  const [activeSection, setActiveSection] = React.useState("")
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  React.useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.slice(1))
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id)
+        },
+        { threshold: 0.2, rootMargin: "-80px 0px -50% 0px" }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
   }, [])
 
   return (
@@ -35,9 +54,7 @@ export function Navbar() {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "glass border-b py-3"
-          : "bg-transparent py-5"
+        isScrolled ? "glass border-b py-3" : "bg-transparent py-5"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -46,16 +63,36 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="group relative font-body text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.slice(1)
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "group relative font-body text-sm font-medium transition-colors duration-200",
+                  isActive
+                    ? "text-black dark:text-white"
+                    : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                )}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="navDot"
+                    className="absolute -top-2.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-current"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {item.name}
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-0.5 bg-current transition-all duration-300",
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  )}
+                />
+              </Link>
+            )
+          })}
           <ThemeToggle />
         </nav>
 
@@ -84,7 +121,10 @@ export function Navbar() {
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className={cn(
+                "rounded-lg px-3 py-2 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                activeSection === item.href.slice(1) && "font-semibold"
+              )}
             >
               {item.name}
             </Link>
