@@ -2,13 +2,12 @@
 
 import { Suspense, useRef, useState, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useGLTF, OrbitControls } from "@react-three/drei"
+import { useGLTF } from "@react-three/drei"
 import * as THREE from "three"
 
 const MCLAREN_PATH = "/models/mclaren_f1_1993_by_alex.ka..glb"
 const DODGE_PATH = "/models/dodge_charger_srt_police.glb"
 
-// Shared scroll hook
 function useScrollY() {
   const [scrollY, setScrollY] = useState(0)
   useEffect(() => {
@@ -19,40 +18,68 @@ function useScrollY() {
   return scrollY
 }
 
-// McLaren — starts at bottom-center, drives down and exits around scrollY ~2100
+// McLaren — orbits around center, descends with scroll
 function McLarenModel({ scrollY }: { scrollY: number }) {
   const { scene } = useGLTF(MCLAREN_PATH)
   const groupRef = useRef<THREE.Group>(null)
+  const scrollRef = useRef(scrollY)
 
-  useFrame(() => {
+  useEffect(() => {
+    scrollRef.current = scrollY
+  }, [scrollY])
+
+  useFrame(({ clock }) => {
     if (!groupRef.current) return
-    groupRef.current.position.y = -(scrollY / 300)
-    groupRef.current.rotation.y += 0.004
+    const t = clock.elapsedTime
+    const radius = 4
+    const speed = 0.45
+
+    // Circular orbit on X/Z plane
+    groupRef.current.position.x = radius * Math.cos(t * speed)
+    groupRef.current.position.z = radius * Math.sin(t * speed)
+    // Descend as user scrolls
+    groupRef.current.position.y = -(scrollRef.current / 280)
+    // Face direction of travel
+    groupRef.current.rotation.y = -(t * speed) + Math.PI
   })
 
   return (
-    <group ref={groupRef} position={[2, 0, 0]}>
-      <primitive object={scene.clone()} scale={[2.5, 2.5, 2.5]} />
+    <group ref={groupRef}>
+      <primitive object={scene.clone()} scale={[5, 5, 5]} />
     </group>
   )
 }
 
-// Dodge Charger — enters from top of screen starting at scrollY ~1500, drives down through mid-page
+// Dodge Charger — enters from top at scrollY 1500, orbits with opposite phase
 function DodgeModel({ scrollY }: { scrollY: number }) {
   const { scene } = useGLTF(DODGE_PATH)
   const groupRef = useRef<THREE.Group>(null)
+  const scrollRef = useRef(scrollY)
 
-  useFrame(() => {
+  useEffect(() => {
+    scrollRef.current = scrollY
+  }, [scrollY])
+
+  useFrame(({ clock }) => {
     if (!groupRef.current) return
-    // Enters from top (y=10) at scrollY=1500, drives down
-    const offset = Math.max(0, scrollY - 1500)
-    groupRef.current.position.y = 10 - offset / 280
-    groupRef.current.rotation.y += 0.003
+    const t = clock.elapsedTime
+    const radius = 5
+    const speed = 0.35
+    // Opposite phase start (Math.PI offset) so cars don't align
+    const phase = Math.PI
+
+    groupRef.current.position.x = radius * Math.cos(t * speed + phase)
+    groupRef.current.position.z = radius * Math.sin(t * speed + phase)
+    // Enters from above at scrollY=1500, then descends
+    const offset = Math.max(0, scrollRef.current - 1500)
+    groupRef.current.position.y = 10 - offset / 260
+    // Face direction of travel
+    groupRef.current.rotation.y = -(t * speed + phase) + Math.PI
   })
 
   return (
-    <group ref={groupRef} position={[-2, 10, 0]}>
-      <primitive object={scene.clone()} scale={[2.5, 2.5, 2.5]} />
+    <group ref={groupRef}>
+      <primitive object={scene.clone()} scale={[5, 5, 5]} />
     </group>
   )
 }
@@ -61,10 +88,10 @@ function SceneContent({ scrollY }: { scrollY: number }) {
   return (
     <>
       <color attach="background" args={["#02040a"]} />
-      <ambientLight intensity={1.5} />
-      <directionalLight position={[10, 10, 10]} intensity={2.5} />
-      <directionalLight position={[-10, 5, -10]} intensity={0.8} />
-      <pointLight position={[0, 5, 5]} intensity={1} />
+      <ambientLight intensity={2} />
+      <directionalLight position={[10, 10, 10]} intensity={3} />
+      <directionalLight position={[-10, 5, -10]} intensity={1} />
+      <pointLight position={[0, 8, 0]} intensity={1.5} />
 
       <Suspense fallback={null}>
         <McLarenModel scrollY={scrollY} />
@@ -89,7 +116,7 @@ export function CarScrollBackground() {
       <Canvas
         frameloop="always"
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 15], fov: 50, near: 0.1, far: 1000 }}
+        camera={{ position: [0, 2, 10], fov: 60, near: 0.1, far: 1000 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         style={{ width: "100%", height: "100%", display: "block" }}
       >
