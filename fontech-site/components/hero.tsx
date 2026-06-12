@@ -67,7 +67,7 @@ export function Hero() {
       ))}
 
       {/* Spinning ring decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <motion.div
           className="w-[600px] h-[600px] rounded-full border border-[rgba(212,175,55,0.08)] animate-spin-slow"
           style={{ boxShadow: "0 0 80px rgba(212,175,55,0.05)" }}

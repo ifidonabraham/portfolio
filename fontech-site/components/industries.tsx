@@ -7,7 +7,7 @@ const industries = [
   {
     label: "Restaurants & Food",
     img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=90&auto=format&fit=crop",
-    span: "col-span-2 row-span-2",
+    span: "col-span-2 md:col-span-2 md:row-span-2 row-span-1",
   },
   {
     label: "Luxury Hotels",
@@ -92,7 +92,7 @@ export function Industries() {
         </motion.div>
 
         {/* Masonry-like grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[220px] gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[220px] gap-3 md:gap-4">
           {industries.map((ind, i) => (
             <motion.div
               key={ind.label}
