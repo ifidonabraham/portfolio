@@ -63,7 +63,7 @@ export function Contact() {
             <div className="space-y-5">
               {[
                 { icon: Phone, label: "Call Us", value: "0704 572 3013", href: "tel:07045723013" },
-                { icon: Mail, label: "Email Us", value: "hello@fontech.com", href: "mailto:hello@fontech.com" },
+                { icon: Mail, label: "Email Us", value: "ifidonabraham249@gmail.com", href: "mailto:ifidonabraham249@gmail.com" },
                 { icon: MapPin, label: "Location", value: "Nigeria — Serving Globally", href: "#" },
               ].map(({ icon: Icon, label, value, href }) => (
                 <a

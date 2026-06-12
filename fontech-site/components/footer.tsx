@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Phone, Mail, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
 
 const links = {
   Services: ["Web Development", "Mobile Apps", "E-Commerce", "AI Chatbots", "UI/UX Design", "Branding"],
@@ -35,7 +35,7 @@ export function Footer() {
               0704 572 3013
             </a>
             <a
-              href="mailto:hello@fontech.com"
+              href="mailto:ifidonabraham249@gmail.com"
               className="flex items-center gap-2 px-6 py-4 border-2 border-[rgba(212,175,55,0.5)] text-[#D4AF37] font-bold rounded-full hover:bg-[rgba(212,175,55,0.08)] transition-all"
             >
               <Mail size={18} />
@@ -60,6 +60,20 @@ export function Footer() {
             <div className="mt-6 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
               <span className="text-xs text-zinc-500">Available for new projects</span>
+            </div>
+            <div className="mt-6 flex items-center gap-4">
+              <a href="https://github.com/ifidonabraham" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-zinc-500 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all">
+                <Github size={15} />
+              </a>
+              <a href="https://www.linkedin.com/in/abraham-ifidon-4279b2402" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-zinc-500 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all">
+                <Linkedin size={15} />
+              </a>
+              <a href="https://x.com/don_atyaservice" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-zinc-500 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all">
+                <Twitter size={15} />
+              </a>
+              <a href="mailto:ifidonabraham249@gmail.com" className="w-9 h-9 rounded-full border border-[rgba(212,175,55,0.2)] flex items-center justify-center text-zinc-500 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all">
+                <Mail size={15} />
+              </a>
             </div>
           </div>
 

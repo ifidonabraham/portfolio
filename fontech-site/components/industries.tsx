@@ -6,62 +6,62 @@ import { ArrowUpRight } from "lucide-react";
 const industries = [
   {
     label: "Restaurants & Food",
-    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=90&auto=format&fit=crop",
     span: "col-span-2 row-span-2",
   },
   {
     label: "Luxury Hotels",
-    img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Real Estate",
-    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Healthcare",
-    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Fashion & Retail",
-    img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=90&auto=format&fit=crop",
     span: "col-span-2 row-span-1",
   },
   {
     label: "Finance & Banking",
-    img: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Education",
-    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Technology & Startups",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=90&auto=format&fit=crop",
     span: "col-span-2 row-span-1",
   },
   {
     label: "Manufacturing",
-    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Media & Entertainment",
-    img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Government",
-    img: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
   {
     label: "Non-Profit",
-    img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1000&q=90&auto=format&fit=crop",
     span: "col-span-1 row-span-1",
   },
 ];
@@ -107,7 +107,7 @@ export function Industries() {
                 alt={ind.label}
                 fill
                 className="object-cover rounded-2xl"
-                sizes="(max-width: 768px) 50vw, 25vw"
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
               />
               {/* Label overlay */}
               <div className="absolute inset-0 rounded-2xl z-10 flex flex-col justify-end p-5 bg-gradient-to-t from-black/85 via-black/20 to-transparent">
