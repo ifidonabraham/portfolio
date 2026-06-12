@@ -60,7 +60,7 @@ export function Benefits() {
             >
               Key <span className="gold-text">Benefits</span>
               <br />
-              <span className="text-zinc-400 text-3xl font-normal">of working with FON AI LABS</span>
+              <span className="text-zinc-400 text-3xl font-normal">of working with FON TECH</span>
             </h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-10">
               We combine cutting-edge technology with deep industry knowledge to deliver solutions that don't just look great — they perform, convert, and grow with your business.

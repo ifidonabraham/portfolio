@@ -35,7 +35,7 @@ export function Footer() {
               0704 572 3013
             </a>
             <a
-              href="mailto:hello@fonailabs.com"
+              href="mailto:hello@fontech.com"
               className="flex items-center gap-2 px-6 py-4 border-2 border-[rgba(212,175,55,0.5)] text-[#D4AF37] font-bold rounded-full hover:bg-[rgba(212,175,55,0.08)] transition-all"
             >
               <Mail size={18} />
@@ -51,7 +51,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <div className="mb-6">
-              <span className="text-2xl font-black tracking-widest gold-text">FON AI LABS</span>
+              <span className="text-2xl font-black tracking-widest gold-text">FON TECH</span>
               <p className="text-[10px] tracking-[0.4em] text-zinc-500 uppercase mt-1">Innovative Digital Solutions</p>
             </div>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
@@ -83,7 +83,7 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-[rgba(212,175,55,0.08)] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-zinc-600 text-sm">
-            © {new Date().getFullYear()} FON AI LABS. All rights reserved.
+            © {new Date().getFullYear()} FON TECH. All rights reserved.
           </p>
           <p className="text-zinc-600 text-sm flex items-center gap-1">
             Built with precision by{" "}

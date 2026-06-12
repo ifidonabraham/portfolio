@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FON AI LABS — Innovative Digital Solutions",
+  title: "FON TECH — Innovative Digital Solutions",
   description:
-    "FON AI LABS delivers premium web development, mobile apps, AI integrations, and digital content for businesses across every industry. Your digital success starts here.",
-  keywords: "web development, mobile apps, AI chatbots, digital solutions, e-commerce, UI/UX, FON AI LABS",
+    "FON TECH delivers premium web development, mobile apps, AI integrations, and digital content for businesses across every industry. Your digital success starts here.",
+  keywords: "web development, mobile apps, AI chatbots, digital solutions, e-commerce, UI/UX, FON TECH",
   openGraph: {
-    title: "FON AI LABS — Innovative Digital Solutions",
+    title: "FON TECH — Innovative Digital Solutions",
     description: "Premium digital experiences for businesses across every industry.",
     type: "website",
   },

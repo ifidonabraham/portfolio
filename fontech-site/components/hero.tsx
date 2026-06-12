@@ -104,9 +104,9 @@ export function Hero() {
           className="text-[clamp(3.5rem,12vw,9rem)] font-black leading-none tracking-tight mb-2"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          <span className="gold-text">FON AI</span>
+          <span className="gold-text">FON</span>
           <br />
-          <span className="text-white">LABS</span>
+          <span className="text-white">TECH</span>
         </motion.h1>
 
         {/* Subtitle */}

@@ -34,7 +34,7 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex flex-col leading-none group">
-            <span className="text-xl font-black tracking-widest gold-text">FON AI LABS</span>
+            <span className="text-xl font-black tracking-widest gold-text">FON TECH</span>
             <span className="text-[10px] tracking-[0.35em] text-zinc-400 uppercase font-medium group-hover:text-[#D4AF37] transition-colors">
               Innovative Digital Solutions
             </span>

@@ -54,7 +54,7 @@ export function Contact() {
             className="lg:col-span-2 space-y-10"
           >
             <div>
-              <h3 className="text-2xl font-bold gold-text mb-6">FON AI LABS</h3>
+              <h3 className="text-2xl font-bold gold-text mb-6">FON TECH</h3>
               <p className="text-zinc-400 leading-relaxed">
                 We're a team of passionate developers, designers, and digital strategists — building the future of business online. One project at a time.
               </p>
@@ -63,7 +63,7 @@ export function Contact() {
             <div className="space-y-5">
               {[
                 { icon: Phone, label: "Call Us", value: "0704 572 3013", href: "tel:07045723013" },
-                { icon: Mail, label: "Email Us", value: "hello@fonailabs.com", href: "mailto:hello@fonailabs.com" },
+                { icon: Mail, label: "Email Us", value: "hello@fontech.com", href: "mailto:hello@fontech.com" },
                 { icon: MapPin, label: "Location", value: "Nigeria — Serving Globally", href: "#" },
               ].map(({ icon: Icon, label, value, href }) => (
                 <a
