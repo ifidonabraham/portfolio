@@ -9,17 +9,15 @@ import { AnimatedWords } from "@/components/animated-words"
 
 const projects = [
   {
-    title: "StormBridge AI",
-    subtitle: "Operational Weather Intelligence Platform",
-    description:
-      "Built a full-stack platform for fast weather risk checks, AI-generated safety guidance, community hazard reports, responder coordination, and offline-ready alert cards. A multi-agent chain analyzes locations, escalates high-priority signals, and keeps the latest plan available when connectivity drops.",
-    tech: ["Next.js", "TypeScript", "Supabase", "NVIDIA AI", "Tailwind CSS", "Open-Meteo"],
-    liveUrl: "https://stormbrigde.vercel.app/",
-    githubUrl: "https://github.com/ifidonabraham/stormbridge",
-    slug: "stormbridge",
-    category: "AI",
-    learnings:
-      "Designed an end-to-end agent pipeline with structured JSON outputs and deterministic fallbacks so the product stays reliable when providers fail. Learned how to connect live weather data, field reports, responder workflows, and offline storage into one operational dashboard.",
+    title: "Real Estate Finder",
+    subtitle: "Full-Stack Real Estate Platform",
+    description: "Built a modern web application that allows users to browse property listings, message agents, and manage real estate listings. Developed responsive and user-friendly interface with clean design and smooth navigation.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    liveUrl: "https://omegaestate.homes",
+    githubUrl: "https://github.com/ifidonabraham/realestatewebsite",
+    slug: "real-estate-finder",
+    category: "Full-Stack",
+    learnings: "Building a real estate website involves handling property data like listings, prices, locations, and images in an organized way. It also requires user authentication and role management to separate agents from clients with different permissions. Another challenge is building search, filtering, and map features while ensuring good performance and fast loading.",
   },
   {
     title: "SystemGuardian",
@@ -35,15 +33,17 @@ const projects = [
       "Learned how to coordinate specialized agents (monitoring, forecasting, ranking, execution, whitelist guard, logging, UI, feedback) under a master orchestrator with tiered thresholds. Balancing aggressive resource recovery with user safety required careful whitelist rules and foreground-process protection.",
   },
   {
-    title: "Real Estate Finder",
-    subtitle: "Full-Stack Real Estate Platform",
-    description: "Built a modern web application that allows users to browse property listings, message agents, and manage real estate listings. Developed responsive and user-friendly interface with clean design and smooth navigation.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    liveUrl: "https://realestatewebsite-omega.vercel.app",
-    githubUrl: "https://github.com/ifidonabraham/realestatewebsite",
-    slug: "real-estate-finder",
-    category: "Full-Stack",
-    learnings: "Building a real estate website involves handling property data like listings, prices, locations, and images in an organized way. It also requires user authentication and role management to separate agents from clients with different permissions. Another challenge is building search, filtering, and map features while ensuring good performance and fast loading.",
+    title: "StormBridge AI",
+    subtitle: "Operational Weather Intelligence Platform",
+    description:
+      "Built a full-stack platform for fast weather risk checks, AI-generated safety guidance, community hazard reports, responder coordination, and offline-ready alert cards. A multi-agent chain analyzes locations, escalates high-priority signals, and keeps the latest plan available when connectivity drops.",
+    tech: ["Next.js", "TypeScript", "Supabase", "NVIDIA AI", "Tailwind CSS", "Open-Meteo"],
+    liveUrl: "https://stormbrigde.vercel.app/",
+    githubUrl: "https://github.com/ifidonabraham/stormbridge",
+    slug: "stormbridge",
+    category: "AI",
+    learnings:
+      "Designed an end-to-end agent pipeline with structured JSON outputs and deterministic fallbacks so the product stays reliable when providers fail. Learned how to connect live weather data, field reports, responder workflows, and offline storage into one operational dashboard.",
   },
   {
     title: "AI-Powered Web Applications: Dokito",
