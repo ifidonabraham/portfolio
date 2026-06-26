@@ -29,8 +29,7 @@ const projects = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://fonialabs.vercel.app",
     githubUrl: "https://github.com/ifidonabraham/fonia-labs",
-    slug: "fonia-labs",
-    image: "/projects/fonia-labs/desktop.webp",
+    slug: "fonialabs",
     category: "Full-Stack",
     learnings:
       "Learned how to architect a multi-brand ecosystem presentation that communicates a startup factory model clearly. Structuring multiple ventures under one coherent narrative required strong information hierarchy and thoughtful UX decisions.",
@@ -215,7 +214,7 @@ function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: n
       <div className="relative aspect-video overflow-hidden">
         <div className="absolute inset-0 z-10 bg-black/5 opacity-0 transition-opacity group-hover:opacity-100" />
         <Image
-          src={project.image ?? `/projects/${project.slug}/desktop.png`}
+          src={`/projects/${project.slug}/desktop.png`}
           alt={`${project.title} desktop preview`}
           fill
           loading="lazy"
