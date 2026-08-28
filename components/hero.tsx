@@ -73,7 +73,7 @@ export function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <a
-            href="/resume.pdf"
+            href="/Ifidon_Abraham_Professional_Resume.docx"
             download
             className="glass flex h-12 items-center justify-center gap-2 rounded-full px-8 font-body text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
           >

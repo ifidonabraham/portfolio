@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Assets
 
 - **Profile Photo**: `public/myimage.png`
-- **Resume**: `public/resume.pdf`
+- **Resume**: `public/Ifidon_Abraham_Professional_Resume.docx`
 - **Project Screenshots**: `public/projects/[slug]/desktop.png` and `mobile.png`
 
 ## Deployment
