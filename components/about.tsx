@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { GraduationCap, MapPin, User } from "lucide-react"
+import { GraduationCap, MapPin, User, FileText } from "lucide-react"
 import { AnimatedWords } from "@/components/animated-words"
 
 export function About() {
@@ -74,6 +74,23 @@ export function About() {
                 <div>
                   <p className="type-mono">Location</p>
                   <p className="type-body mt-1 text-sm">Lagos, Nigeria</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-white rounded-lg shadow-sm border border-zinc-100 dark:bg-zinc-800 dark:border-zinc-700">
+                  <FileText className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="type-mono">Resume</p>
+                  <a
+                    href="/cv.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="type-body mt-1 inline-flex items-center gap-1 text-sm font-semibold underline underline-offset-4 hover:text-black dark:hover:text-white"
+                  >
+                    View Resume (PDF) ↗
+                  </a>
                 </div>
               </div>
             </motion.div>

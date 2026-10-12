@@ -93,6 +93,14 @@ export function Navbar() {
               </Link>
             )
           })}
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-zinc-300 px-3.5 py-1 font-body text-xs font-semibold text-zinc-900 transition-all hover:bg-zinc-900 hover:text-white dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-white dark:hover:text-black"
+          >
+            Resume ↗
+          </a>
           <ThemeToggle />
         </nav>
 
@@ -129,6 +137,15 @@ export function Navbar() {
               {item.name}
             </Link>
           ))}
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="rounded-lg px-3 py-2 text-sm font-semibold text-zinc-900 hover:bg-zinc-100 dark:text-zinc-100 dark:hover:bg-zinc-800"
+          >
+            Resume (PDF) ↗
+          </a>
         </motion.nav>
       ) : null}
     </motion.header>

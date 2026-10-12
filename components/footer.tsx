@@ -26,6 +26,7 @@ export function Footer() {
               <a href="#projects" className="hover:underline">Projects</a>
               <a href="#articles" className="hover:underline">Articles</a>
               <a href="#contact" className="hover:underline">Contact</a>
+              <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="font-medium text-black underline underline-offset-4 dark:text-white">Resume (PDF) ↗</a>
             </div>
             <div className="mt-4 flex gap-4">
               <a href="https://github.com/ifidonabraham" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-black dark:hover:text-white" aria-label="GitHub">

@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, Download } from "lucide-react"
+import { ArrowRight, Download, FileText } from "lucide-react"
 import { PROFILE_IMAGE } from "@/lib/site"
 import { SpaceModelBackground } from "@/components/space-model-loader"
 
@@ -73,12 +73,13 @@ export function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <a
-            href="/Ifidon_Abraham_Professional_Resume.docx"
-            download
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="glass flex h-12 items-center justify-center gap-2 rounded-full px-8 font-body text-sm font-semibold text-white transition-all hover:-translate-y-0.5"
           >
-            Download Resume
-            <Download className="h-4 w-4" />
+            View Resume
+            <FileText className="h-4 w-4" />
           </a>
         </motion.div>
       </div>
